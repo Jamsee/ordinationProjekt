@@ -42,6 +42,7 @@ public class ServiceTest
     }
 
     [TestMethod]
+
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestAtKodenSmiderEnException()
     {
@@ -50,6 +51,8 @@ public class ServiceTest
 
         // Hvis koden _ikke_ smider en exception,
         // så fejler testen.
+
+        service.OpretDagligSkaev( 4,  1, null, new DateTime(2023, 1, 1), new DateTime(2022, 1, 1));
 
         Console.WriteLine("Her kommer der ikke en exception. Testen fejler.");
     }
