@@ -46,14 +46,16 @@ public class ServiceTest
     [ExpectedException(typeof(ArgumentNullException))]
     public void TestAtKodenSmiderEnException()
     {
-        // Herunder skal man så kalde noget kode,
-        // der smider en exception.
+       
+        var validPatientId = 1;
+        var validLaegemiddelId = 100;
+        var validDoser = new Dosis[2];
+        var invalidStartDato = DateTime.Now.AddDays(-1); // Set to a past date
+        var validSlutDato = DateTime.Now;
 
-        // Hvis koden _ikke_ smider en exception,
-        // så fejler testen.
-
-        service.OpretDagligSkaev( 4,  1, null, new DateTime(2023, 1, 1), new DateTime(2022, 1, 1));
-
+        // Act and Assert
+        Assert.ThrowsException<ArgumentException>(() => service.OpretDagligSkaev(validPatientId, validLaegemiddelId, validDoser, invalidStartDato, validSlutDato));
+        
         Console.WriteLine("Her kommer der ikke en exception. Testen fejler.");
     }
 }
